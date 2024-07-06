@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema PDV Avançado</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <div id="pdv-container">
+        <header>
+            <h1>PDV<span>Pro</span></h1>
+            <nav id="main-menu">
+                <ul>
+                    <li><a href="#" id="menu-products" class="active"><i class="fas fa-box"></i> Produtos</a></li>
+                    <li><a href="#" id="menu-sales"><i class="fas fa-shopping-cart"></i> Vendas</a></li>
+                    <li><a href="#" id="menu-reports"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                </ul>
+            </nav>
+            <div id="cart-icon" aria-label="Carrinho de compras">
+                <i class="fas fa-shopping-basket"></i>
+                <span id="cart-badge">0</span>
+            </div>
+        </header>
+
+        <main id="main-content">
+            <section id="products-section" class="active-section">
+                <h2>Produtos</h2>
+                <button id="open-add-product-modal" class="btn-primary">
+                    <i class="fas fa-plus"></i> Adicionar Produto
+                </button>
+                <div id="product-menu" aria-label="Menu de Produtos"></div>
+            </section>
+
+            <section id="sales-section" class="hidden-section">
+                <h2>Vendas</h2>
+                <!-- Conteúdo da seção de vendas será adicionado dinamicamente -->
+            </section>
+
+            <section id="reports-section" class="hidden-section">
+                <h2>Relatórios</h2>
+                <!-- Conteúdo da seção de relatórios será adicionado dinamicamente -->
+            </section>
+        </main>
+
+        <!-- Modal para adicionar produto -->
+        <div id="add-product-modal" class="modal center" aria-hidden="true">
+            <div class="modal-content">
+                <span class="close-btn" id="close-add-product-modal">&times;</span>
+                <h2>Adicionar Produto</h2>
+                <form id="add-product-form-modal" aria-label="Adicionar Produto">
+                    <label for="modal-product-name">Nome do produto:</label>
+                    <input type="text" id="modal-product-name" placeholder="Nome do produto" required aria-label="Nome do produto">
+                    
+                    <label for="modal-product-price">Preço:</label>
+                    <input type="number" id="modal-product-price" placeholder="Preço" step="0.01" required aria-label="Preço">
+                    
+                    <label for="modal-product-category">Categoria:</label>
+                    <select id="modal-product-category" required aria-label="Categoria do produto">
+                        <option value="">Selecione uma categoria</option>
+                        <option value="alimentos">Alimentos</option>
+                        <option value="bebidas">Bebidas</option>
+                        <option value="limpeza">Limpeza</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                    
+                    <button type="submit" class="btn-primary">Adicionar Produto</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal do carrinho -->
+        <div id="cart-modal" class="modal-right floating" aria-hidden="true">
+            <div class="modal-content">
+                <span class="close-btn" id="close-cart-modal">&times;</span>
+                <h2>Carrinho de Compras</h2>
+                <div id="cart-items" aria-label="Itens no Carrinho"></div>
+                <div id="cart-total" aria-label="Total do Carrinho">Total: R$ 0.00</div>
+                <select id="payment-method" aria-label="Método de Pagamento">
+                    <option value="">Selecione o método de pagamento</option>
+                    <option value="credit">Crédito</option>
+                    <option value="debit">Débito</option>
+                    <option value="pix">PIX</option>
+                    <option value="cash">Dinheiro</option>
+                </select>
+                <div id="cash-payment" style="display: none;">
+                    <input type="number" id="cash-amount" placeholder="Valor em dinheiro" step="0.01" aria-label="Valor em dinheiro">
+                    <div id="change" aria-label="Troco">Troco: R$ 0.00</div>
+                </div>
+                <button id="process-payment" class="btn-primary">Processar Pagamento</button>
+            </div>
+        </div>
+
+        <!-- Área de notificações -->
+        <div id="notification-area"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
